@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Library - View Books</title>
+  <link rel="stylesheet" href="view.css" />
+</head>
+<body>
+  <header>
+    <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+    <h1>Explore Our Book Collection</h1>
+  </header>
+  <div class="search-container">
+    <input type="text" id="search-bar" placeholder="Search books by title, author, or category..." onkeyup="filterBooks()">
+  </div>
+  
+
+  <main class="book-grid">
+    <!-- 18 Book Cards with working images -->
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/81eB+7+CkUL.jpg" alt="Atomic Habits">
+      <h3>Atomic Habits</h3>
+      <p>Rent: ₹30/week</p>
+      <span class="status">Available</span>
+    </div>
+    <div class="book-card issued">
+      <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg" alt="The Alchemist">
+      <h3>The Alchemist</h3>
+      <p>Rent: ₹25/week</p>
+      <span class="status">Issued</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/91uwocAMtSL.jpg" alt="Think Like a Monk">
+      <h3>Think Like a Monk</h3>
+      <p>Rent: ₹35/week</p>
+      <span class="status">Available</span>
+    </div>
+    <div class="book-card issued">
+      <img src="https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg" alt="Power of Habit">
+      <h3>The Power of Habit</h3>
+      <p>Rent: ₹28/week</p>
+      <span class="status">Issued</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/81-QB7nDh4L.jpg" alt="5 AM Club">
+      <h3>The 5 AM Club</h3>
+      <p>Rent: ₹30/week</p>
+      <span class="status">Available</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg" alt="The Book Thief">
+      <h3>The Book Thief</h3>
+      <p>Rent: ₹22/week</p>
+      <span class="status">Available</span>
+    </div>
+    <div class="book-card issued">
+      <img src="https://m.media-amazon.com/images/I/81vpsIs58WL.jpg" alt="Rich Dad Poor Dad">
+      <h3>Rich Dad Poor Dad</h3>
+      <p>Rent: ₹32/week</p>
+      <span class="status">Issued</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/61Iz2yy2CKL.jpg" alt="Ikigai">
+      <h3>Ikigai</h3>
+      <p>Rent: ₹20/week</p>
+      <span class="status">Available</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/71g2ednj0JL.jpg" alt="To Kill a Mockingbird">
+      <h3>To Kill a Mockingbird</h3>
+      <p>Rent: ₹30/week</p>
+      <span class="status">Available</span>
+    </div>
+    <div class="book-card issued">
+      <img src="https://m.media-amazon.com/images/I/81t2CVWEsUL.jpg" alt="1984 Orwell">
+      <h3>1984 - George Orwell</h3>
+      <p>Rent: ₹25/week</p>
+      <span class="status">Issued</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/91bYsX41DVL.jpg" alt="Zero to One">
+      <h3>Zero to One</h3>
+      <p>Rent: ₹40/week</p>
+      <span class="status">Available</span>
+    </div>
+    
+    <div class="book-card issued">
+      <img src="https://m.media-amazon.com/images/I/713jIoMO3UL.jpg" alt="Wings of Fire">
+      <h3>Wings of Fire</h3>
+      <p>Rent: ₹18/week</p>
+      <span class="status">Issued</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/81dQwQlmAXL.jpg" alt="Harry Potter">
+      <h3>Harry Potter</h3>
+      <p>Rent: ₹35/week</p>
+      <span class="status">Available</span>
+    </div>
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/71-lfJdVvZL.jpg" alt="Start With Why">
+      <h3>Start With Why</h3>
+      <p>Rent: ₹28/week</p>
+      <span class="status">Available</span>
+    </div>
+    
+    <div class="book-card issued">
+      <img src="https://m.media-amazon.com/images/I/61-hMfd7NGL.jpg" alt="The Psychology of Money">
+      <h3>The Psychology of Money</h3>
+      <p>Rent: ₹32/week</p>
+      <span class="status">Issued</span>
+    </div>
+    
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/71zBs7QHjwL.jpg" alt="Deep Work">
+      <h3>Deep Work</h3>
+      <p>Rent: ₹38/week</p>
+      <span class="status">Available</span>
+    </div>
+    
+    <div class="book-card available">
+      <img src="https://m.media-amazon.com/images/I/81e5O4FD+cL.jpg" alt="Do It Today">
+      <h3>Do It Today</h3>
+      <p>Rent: ₹26/week</p>
+      <span class="status">Available</span>
+    </div>
+    
+    
+    
+    <div class="book-card issued">
+      <img src="https://m.media-amazon.com/images/I/81WcnNQ-TBL.jpg" alt="The Subtle Art of Not Giving a F*ck">
+      <h3>The Subtle Art...</h3>
+      <p>Rent: ₹36/week</p>
+      <span class="status">Issued</span>
+    </div>
+   
+  </main>
+
+    <script>
+  function filterBooks() {
+    const query = document.getElementById("search-bar").value.toLowerCase();
+    const books = document.querySelectorAll(".book-card");
+
+    books.forEach(book => {
+      const title = book.querySelector("h3").textContent.toLowerCase();
+      const author = book.querySelector("p").textContent.toLowerCase();
+      if (title.includes(query) || author.includes(query)) {
+        book.style.display = "block";
+      } else {
+        book.style.display = "none";
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

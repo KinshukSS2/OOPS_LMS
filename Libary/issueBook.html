@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Issue Book | Library System</title>
+  <link rel="stylesheet" href="issue.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📖 Issue a Book</h1>
+
+    <form id="issueForm">
+      <label for="studentName">Student Name:</label>
+      <input type="text" id="studentName" required>
+
+      <label for="bookTitle">Select Book:</label>
+      <select id="bookTitle" required>
+        <option value="">--Choose a Book--</option>
+        <option value="The Alchemist">The Alchemist</option>
+        <option value="Atomic Habits">Atomic Habits</option>
+        <option value="Ikigai">Ikigai</option>
+        <option value="Deep Work">Deep Work</option>
+      </select>
+
+      <label for="issueDate">Issue Date:</label>
+      <input type="date" id="issueDate" readonly>
+
+      <label for="returnDate">Return Date:</label>
+      <input type="date" id="returnDate" readonly>
+
+      <button type="submit">Issue Book</button>
+    </form>
+
+    <div id="issuedDetails" class="card" style="display: none;">
+      <h2>Book Issued ✅</h2>
+      <p><strong>Book:</strong> <span id="bookIssued"></span></p>
+      <p><strong>Return by:</strong> <span id="returnBy"></span></p>
+    </div>
+
+    <div class="fine-section">
+      <h2>🔎 Check Fine</h2>
+      <label for="actualReturnDate">Enter Actual Return Date:</label>
+      <input type="date" id="actualReturnDate">
+      <button onclick="calculateFine()">Check Fine</button>
+      <p id="fineResult"></p>
+    </div>
+  </div>
+
+  <script>
+    const maxBooksAllowed = 3;
+
+    // Mock issued books for the logged-in student
+    const issuedBooks = [
+      { title: "The Alchemist", issueDate: "2025-04-01", returnDate: "2025-04-08" },
+      { title: "Atomic Habits", issueDate: "2025-04-03", returnDate: "2025-04-10" },
+      { title: "Ikigai", issueDate: "2025-04-05", returnDate: "2025-04-12" }
+    ];
+
+    const form = document.getElementById('issueForm');
+    const bookTitle = document.getElementById('bookTitle');
+    const issueDate = document.getElementById('issueDate');
+    const returnDate = document.getElementById('returnDate');
+
+    // Set today's date and return date
+    const today = new Date();
+    const issueStr = today.toISOString().split('T')[0];
+    const returnStr = new Date(today.setDate(today.getDate() + 7)).toISOString().split('T')[0];
+    document.getElementById('issueDate').value = issueStr;
+    document.getElementById('returnDate').value = returnStr;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (issuedBooks.length >= maxBooksAllowed) {
+        alert("❌ You have already issued 3 books. Return one to issue another.");
+        return;
+      }
+
+      const studentName = document.getElementById('studentName').value;
+      const book = bookTitle.value;
+
+      if (!book) {
+        alert("Please select a book.");
+        return;
+      }
+
+      const newIssue = {
+        title: book,
+        issueDate: issueDate.value,
+        returnDate: returnDate.value
+      };
+
+      issuedBooks.push(newIssue);
+
+      document.getElementById('bookIssued').innerText = book;
+      document.getElementById('returnBy').innerText = returnDate.value;
+      document.getElementById('issuedDetails').style.display = 'block';
+
+      alert(`✅ ${book} has been issued to ${studentName}`);
+    });
+
+    function calculateFine() {
+      const returnDate = new Date(document.getElementById('returnDate').value);
+      const actualReturn = new Date(document.getElementById('actualReturnDate').value);
+
+      if (actualReturn <= returnDate) {
+        document.getElementById('fineResult').innerText = "✅ No fine! Returned on time.";
+      } else {
+        const diff = Math.ceil((actualReturn - returnDate) / (1000 * 60 * 60 * 24));
+        const fine = diff * 5; // ₹5 per day
+        document.getElementById('fineResult').innerText = `⚠️ Late by ${diff} day(s). Fine: ₹${fine}`;
+      }
+    }
+  </script>
+</body>
+</html>

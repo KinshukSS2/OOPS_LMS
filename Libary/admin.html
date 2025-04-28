@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Book - Admin Panel</title>
+  <style>
+    /* Global resets and transitions */
+    * {
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    .back-btn {
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.2em;
+    }
+    
+    /* Container layout: 2 columns – one for decoration, one for form */
+    .container {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,240,240,0.95) 100%);
+      width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+    
+    /* Left side decoration */
+    .decorative-side {
+      flex: 1 1 50%;
+      background: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?fit=crop&w=400&q=80') center center no-repeat;
+      background-size: cover;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .decorative-side::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .decorative-side img {
+      position: relative;
+      width: 150px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    
+    /* Right side form */
+    .form-side {
+      flex: 1 1 50%;
+      padding: 40px 60px;
+      position: relative;
+    }
+    .form-side h2 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      text-align: center;
+    }
+    
+    form label {
+      display: block;
+      margin-top: 15px;
+      color: #444;
+      font-weight: bold;
+    }
+    form input,
+    form select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #aaa;
+      border-radius: 8px;
+      font-size: 1em;
+      background: #f7f7f7;
+    }
+    form input:focus,
+    form select:focus {
+      border-color: #007BFF;
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+      background: #fff;
+    }
+    form button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 15px;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1em;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+    }
+    form button:hover {
+      background-color: #0056b3;
+      transform: translateY(-3px);
+    }
+    
+    /* Fade in animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+      .container {
+        flex-direction: column;
+        width: 90%;
+      }
+      .decorative-side, .form-side {
+        flex: none;
+        width: 100%;
+      }
+      .decorative-side {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <header>
+      <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+      <h1>Add a New Book</h1>
+    </header>
+    <div class="container">
+      <!-- Decorative side with a new improved image -->
+      <div class="decorative-side">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?fit=crop&w=400&q=80" alt="Stylish Book Icon">
+      </div>
+      <!-- Form side -->
+      <div class="form-side">
+        <h2>Enter Book Details</h2>
+        <form id="add-book-form">
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" placeholder="Enter book title" required>
+          
+          <label for="author">Author:</label>
+          <input type="text" id="author" name="author" placeholder="Enter author name" required>
+          
+          <label for="category">Category:</label>
+          <input type="text" id="category" name="category" placeholder="Enter category" required>
+          
+          <label for="image">Image URL:</label>
+          <input type="url" id="image" name="image" placeholder="Enter image URL" required>
+          
+          <label for="rent">Rent (e.g., ₹30/week):</label>
+          <input type="text" id="rent" name="rent" placeholder="Enter rent details" required>
+          
+          <label for="status">Status:</label>
+          <select id="status" name="status" required>
+            <option value="Available">Available</option>
+            <option value="Issued">Issued</option>
+          </select>
+          
+          <button type="submit">Add Book</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // When the form is submitted, add the new book to localStorage
+    document.getElementById("add-book-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      // Retrieve existing books from localStorage; if none exist, initialize an empty array.
+      let books = JSON.parse(localStorage.getItem("books")) || [];
+      
+      // Create a new book object using the form values.
+      const newBook = {
+          id: Date.now(), // generate a unique ID based on current time
+          title: document.getElementById("title").value,
+          author: document.getElementById("author").value,
+          category: document.getElementById("category").value,
+          image: document.getElementById("image").value,
+          rent: document.getElementById("rent").value,
+          status: document.getElementById("status").value
+      };
+      
+      // Add the new book to the array.
+      books.push(newBook);
+      
+      // Save the updated books array back to localStorage.
+      localStorage.setItem("books", JSON.stringify(books));
+      
+      // Notify the admin that the book has been added successfully.
+      alert("Book added successfully!");
+      
+      // Optionally, reset the form so it's ready for adding another book.
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
